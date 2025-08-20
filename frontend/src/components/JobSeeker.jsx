@@ -34,6 +34,7 @@ const ResumeForm = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(`${API_URL}/analyzeJobSeeker`, formData, {
+        method: "GET",
         headers: {
           'Content-Type': 'multipart/form-data',
         },
