@@ -29,7 +29,7 @@ async def uploadResume(file: UploadFile = File(...)):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"], 
+    allow_origins=["http://localhost:5173","https://resume-analyzer-omega-ashen.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
