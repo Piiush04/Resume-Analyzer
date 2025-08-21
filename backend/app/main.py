@@ -8,25 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 router = APIRouter()
 app = FastAPI()
 
-app.include_router(recruiter.router)
-app.include_router(roles.router)
-app.include_router(jobSeeker.router)
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the Resume Analyzer API!"}
-
-@app.post("/uploadResume")
-async def uploadResume(file: UploadFile = File(...)):
-    try:
-        text = await pdf_parser.extractText(file)
-        skills = skill_extractor.extractSkills(text)
-        return {"extractedSkills": skills}
-    except Exception as e:
-        raise HTTPException(status_code=500,detail=f"Failed to process resume: {str(e)}")
-
-
-
+# ===================================================================
+# 👇 MOVE THE CORS MIDDLEWARE CONFIGURATION HERE
+# ===================================================================
 origins = [
     # This is your Vercel frontend URL
     "https://resume-analyzer-amber-nine.vercel.app",
@@ -43,5 +27,25 @@ app.add_middleware(
     allow_methods=["*"],         # Allow all methods (GET, POST, etc.)
     allow_headers=["*"],         # Allow all headers
 )
+# ===================================================================
+# ✅ End of CORS section
+# ===================================================================
 
 
+# Now, include your routers and define your routes
+app.include_router(recruiter.router)
+app.include_router(roles.router)
+app.include_router(jobSeeker.router)
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Resume Analyzer API!"}
+
+@app.post("/uploadResume")
+async def uploadResume(file: UploadFile = File(...)):
+    try:
+        text = await pdf_parser.extractText(file)
+        skills = skill_extractor.extractSkills(text)
+        return {"extractedSkills": skills}
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=f"Failed to process resume: {str(e)}")
