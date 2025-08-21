@@ -8,16 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 router = APIRouter()
 app = FastAPI()
 
-# ===================================================================
-# 👇 MOVE THE CORS MIDDLEWARE CONFIGURATION HERE
-# ===================================================================
+
 origins = [
     # This is your Vercel frontend URL
     "https://resume-analyzer-amber-nine.vercel.app",
-
-    # You can also add localhost for development
-    "http://localhost:3000",
-    "http://localhost:5173", # for Vite
+    "http://localhost:5173"
 ]
 
 app.add_middleware(
@@ -27,12 +22,7 @@ app.add_middleware(
     allow_methods=["*"],         # Allow all methods (GET, POST, etc.)
     allow_headers=["*"],         # Allow all headers
 )
-# ===================================================================
-# ✅ End of CORS section
-# ===================================================================
 
-
-# Now, include your routers and define your routes
 app.include_router(recruiter.router)
 app.include_router(roles.router)
 app.include_router(jobSeeker.router)
