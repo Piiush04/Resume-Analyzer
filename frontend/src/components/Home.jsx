@@ -1,8 +1,10 @@
+// In your Home.js file
 
 import React from 'react';
 import '../styles/home.css';
 import recruiterLogo from '../assets/recruiterLogo.png';
 import studentLogo from '../assets/studentIcon.jpg';
+import { Link } from 'react-router-dom'; // 👈 Import Link
 
 function Home() {
   return (
@@ -15,14 +17,17 @@ function Home() {
         </p>
       </div>
       <div className="cards">
-        <div className="card" onClick={() => window.location.href = "/jobSeeker"}>
+        {/* 👇 Wrap the card content in a Link component */}
+        <Link to="/jobSeeker" className="card">
           <img src={studentLogo} alt="Student Icon" />
           <h2>I'm a Student</h2>
-        </div>
-        <div className="card" onClick={()=> window.location.href="/recruiter"}>
+        </Link>
+        
+        {/* 👇 Do the same for the recruiter card */}
+        <Link to="/recruiter" className="card">
           <img src={recruiterLogo} alt="Recruiter Icon" />
           <h2>I'm a Recruiter</h2>
-        </div>
+        </Link>
       </div>
     </div>
   );
