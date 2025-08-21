@@ -27,12 +27,21 @@ async def uploadResume(file: UploadFile = File(...)):
 
 
 
+origins = [
+    # This is your Vercel frontend URL
+    "https://resume-analyzer-amber-nine.vercel.app",
+
+    # You can also add localhost for development
+    "http://localhost:3000",
+    "http://localhost:5173", # for Vite
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173","https://resume-analyzer-omega-ashen.vercel.app"], 
+    allow_origins=origins,       # List of allowed origins
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],         # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],         # Allow all headers
 )
 
 
