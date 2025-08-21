@@ -33,21 +33,20 @@ const ResumeForm = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('https://resume-analyzer-ygw7.onrender.com/analyzeJobSeeker', formData, {
-        method: "GET",
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // ✅ CORRECTED AXIOS CALL:
+      // We removed the third argument with "method" and "headers".
+      // We are also now using your API_URL environment variable.
+      const response = await axios.post(`${API_URL}/analyzeJobSeeker`, formData);
+
       setResult(response.data);
     } catch (error) {
       console.error("Error:", error);
-      alert('Something went wrong');
+      alert('Something went wrong. Check the console for details.');
     } finally {
       setIsLoading(false);
     }
     setShowModal(true);
-  };
+};
 
   return (
     <div className='jobSeeker'>
