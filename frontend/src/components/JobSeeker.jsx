@@ -33,7 +33,7 @@ const ResumeForm = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/analyzeJobSeeker`, formData, {
+      const response = await axios.post('https://resume-analyzer-ygw7.onrender.com/analyzeJobSeeker', formData, {
         method: "GET",
         headers: {
           'Content-Type': 'multipart/form-data',
