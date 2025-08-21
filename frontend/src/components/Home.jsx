@@ -18,13 +18,13 @@ function Home() {
       </div>
       <div className="cards">
         {/* 👇 Wrap the card content in a Link component */}
-        <Link to="/jobSeeker" className="card">
+        <Link to="https://resume-analyzer-ygw7.onrender.com/jobSeeker" className="card">
           <img src={studentLogo} alt="Student Icon" />
           <h2>I'm a Student</h2>
         </Link>
         
         {/* 👇 Do the same for the recruiter card */}
-        <Link to="/recruiter" className="card">
+        <Link to="https://resume-analyzer-ygw7.onrender.com/recruiter" className="card">
           <img src={recruiterLogo} alt="Recruiter Icon" />
           <h2>I'm a Recruiter</h2>
         </Link>
